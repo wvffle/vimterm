@@ -1,3 +1,4 @@
+let s:vimterm_window = -1
 function! vimterm#open()
   if !win_gotoid(s:vimterm_window)
     sb
