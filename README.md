@@ -9,8 +9,17 @@ For example, you can create a mapping to compile c++ programs with g++ without l
 
 Example mappings could look like this:
 
-```
+```viml
 nnoremap <F4> :call vimterm#exec('g++ ' . expand('%') . ' -o /tmp/out') <CR>
 nnoremap <F5> :call vimterm#exec('/tmp/out') <CR>
 ```
 
+## installation
+Basically it's the same as every other plugin, so you can use dein for that:
+```viml
+call dein#add('wvffle/vimterm')
+```
+
+## screenshots
+![](https://cdn.rawgit.com/wvffle/vimterm/screenshots/waff%40nyarch.png)
+![](https://cdn.rawgit.com/wvffle/vimterm/screenshots/git.png)
