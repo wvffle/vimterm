@@ -30,5 +30,6 @@ function! vimterm#exec(cmd)
   new vimtermtmp | q | sp | wincmd j | b vimtermtmp
   execute 'resize ' .  g:vimterm_height
   call termopen(a:cmd)
+  let s:vimterm_window = win_getid()
   startinsert
 endfunction
