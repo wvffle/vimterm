@@ -30,10 +30,9 @@ function! vimterm#exec(cmd)
   if win_gotoid(s:vimterm_window)
     call vimterm#close()
   else
-    sp | wincmd j
+    new vimterm | set nobuflisted | wincmd j
     execute 'resize ' . g:vimterm_height
     call termopen(a:cmd)
-    set nobuflisted
     startinsert
   endif
 endfunction
