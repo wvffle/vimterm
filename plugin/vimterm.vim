@@ -3,4 +3,4 @@ if exists("g:loaded_vimterm")
 endif
 let g:loaded_vimterm = 1
 
-let g:vimterm_height = 7
+let g:vimterm_height = 17

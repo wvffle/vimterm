@@ -1,9 +1,10 @@
 let s:vimterm_window = -1
 function! vimterm#open()
   if !win_gotoid(s:vimterm_window)
-    new vimtermtmp | q | sp | wincmd j | b vimtermtmp
-    execute 'resize ' .  g:vimterm_height
+    sp | wincmd j
+    execute 'resize ' . g:vimterm_height
     term
+    set nobuflisted
     let s:vimterm_window = win_getid()
   else
     startinsert
@@ -26,9 +27,13 @@ function! vimterm#toggle()
 endfunction
 
 function! vimterm#exec(cmd)
-  call vimterm#close()
-  new vimtermtmp | q | sp | wincmd j | b vimtermtmp
-  execute 'resize ' .  g:vimterm_height
-  call termopen(a:cmd)
-  startinsert
+  if win_gotoid(s:vimterm_window)
+    call vimterm#close()
+  else
+    sp | wincmd j
+    execute 'resize ' . g:vimterm_height
+    call termopen(a:cmd)
+    set nobuflisted
+    startinsert
+  endif
 endfunction
