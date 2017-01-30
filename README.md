@@ -13,7 +13,7 @@ nnoremap <silent> <F4> :call vimterm#exec('g++  -o /tmp/out' . expand('%')) <CR>
 nnoremap <silent> <F5> :call vimterm#exec('/tmp/out') <CR>
 
 nnoremap <F7> :call vimterm#toggle() <CR>
-tnoremap <F7> :call vimterm#toggle() <CR>
+tnoremap <F7> <C-\><C-n>:call vimterm#toggle() <CR>
 ```
 
 ## installation
