@@ -1,6 +1,6 @@
 # vimterm
 
-![](https://cdn.rawgit.com/wvffle/vimterm/screenshots/waff%40nyarch.png)
+![](https://cdn.rawgit.com/wvffle/vimterm/screenshots/waff%40nyarch2.png)
 
 vimterm provides simple window with neovim's :terminal at the bottom of the screen.
 
@@ -23,5 +23,6 @@ call dein#add('wvffle/vimterm')
 ```
 
 ## screenshots
+![](https://cdn.rawgit.com/wvffle/vimterm/screenshots/waff%40nyarch2.png)
 ![](https://cdn.rawgit.com/wvffle/vimterm/screenshots/waff%40nyarch.png)
 ![](https://cdn.rawgit.com/wvffle/vimterm/screenshots/git.png)
