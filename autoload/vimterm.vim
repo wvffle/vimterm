@@ -15,7 +15,7 @@ function! vimterm#open()
       execute 'resize ' . g:vimterm_height
       let s:vimterm_window = win_getid()
     endif
-    exec 'buffer ' . s:vimterm_buf
+    exec 'silent buffer ' . s:vimterm_buf
     startinsert
   endif
 endfunction
