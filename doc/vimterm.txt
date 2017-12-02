@@ -1,4 +1,4 @@
-*vimterm.txt* Simple window with neovim's |:terminal| at the bottom of the screen.
+*vimterm.txt* Simple |:terminal| at the bottom of workspace for neovim.
 
 
 Author: wvffle <https://wvffle.net>
@@ -22,23 +22,23 @@ screen.
 
 But why? That's a good question. vimterm lets you operate with your files
 and have a single terminal window attached to the bottom of your workspace.
-For example, you can create a mapping to compile c++ programs with g++ 
+For example, you can create a mapping to compile c++ programs with g++
 without leaving your best editor.
 
 ==============================================================================
 Usage                                                          *vimterm-usage*
 
 vimterm#open()                                                  *vimterm#open*
-  Create new terminal instance at the bottom of current one.
+  Create new terminal instance at the bottom of current workspace.
 
 vimterm#close()                                                *vimterm#close*
-  Close terminal instance.
+  Close terminal.
 
 vimterm#toggle()                                              *vimterm#toggle*
-  Create new terminal instance or close existing one.
+  Open terminal or close existing one.
 
 vimterm#exec({cmd})                                             *vimterm#exec*
-  Create new terminal instance and invoke a command.
+  Execute a command in existing terminal instance or a new one.
 
 ==============================================================================
 Requirements                                            *vimterm-requirements*
@@ -57,7 +57,7 @@ License                                                      *vimterm-license*
 
 The MIT License (MIT)
 
-Copyright (c) 2016 wvffle
+Copyright (c) 2017 wvffle
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
