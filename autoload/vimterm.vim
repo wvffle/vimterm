@@ -23,6 +23,9 @@ function! vimterm#open()
     exec 'silent buffer ' . s:vimterm_buf
   endif
 
+  " clear current input
+  call jobsend(s:vimterm_job_id, "\<c-e>\<c-u>")
+
   startinsert
 endfunction
 
