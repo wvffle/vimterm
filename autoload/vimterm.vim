@@ -68,21 +68,27 @@ function! vimterm#toggle()
   endif
 endfunction
 
-function! vimterm#run(cmd)
+function! vimterm#exec(cmd)
   if !win_gotoid(s:vimterm_window)
     call vimterm#open()
   endif
 
-  call vimterm#exec(a:cmd)
+  " clear current input
+  call jobsend(s:vimterm_job_id, "\<c-e>\<c-u>")
+
+  " run cmd
+  call jobsend(s:vimterm_job_id, a:cmd . "\n")
 
   " scroll down
   normal G
+
+  " start insert
   startinsert
 endfunction
 
-function! vimterm#exec(cmd)
-  if s:vimterm_job_id == -1
-    call vimterm#open()
+function! vimterm#run(cmd)
+  if !bufexists(s:vimterm_buf)
+    call vimterm#init()
     call vimterm#close()
   endif
 

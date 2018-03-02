@@ -28,7 +28,10 @@ without leaving your best editor.
 ==============================================================================
 Usage                                                          *vimterm-usage*
 
-vimterm#open()                                                  *vimterm#open*
+vimterm#open()                                                *vimterm#init()*
+  Create new terminal instance without entering insert mode.
+
+vimterm#open()                                                *vimterm#open()*
   Create new terminal instance at the bottom of current workspace or open
   existing one.
 
@@ -42,14 +45,10 @@ vimterm#toggle()                                            *vimterm#toggle()*
   Call |vimterm#open()| if terminal is closed or |vimterm#close()| if else.
 
 vimterm#run({cmd})                                             *vimterm#run()*
-  Call |vimterm#open()| and |vimterm#exec()| then go to insert mode inside
-  terminal.
-
-vimterm#exec({cmd}                                            *vimterm#exec()*
   Execute a command in existing terminal instance.
 
-  If the |vimterm#open()| was not called it acts just like |vimterm#run()|
-  to create new terminal instance.
+vimterm#exec({cmd}                                            *vimterm#exec()*
+  Call |vimterm#open()| and then go to insert mode inside terminal.
 
 ==============================================================================
 Requirements                                            *vimterm-requirements*
