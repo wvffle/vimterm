@@ -2,17 +2,32 @@ let s:vimterm_job_id = -1
 let s:vimterm_window = -1
 let s:vimterm_buf = -1
 
+function! vimterm#init()
+  
+endfunction
+
+function! vimterm#init()
+  new vimterm
+  exec 'resize ' . g:vimterm_height
+  set nobuflisted
+
+  let s:vimterm_job_id = termopen($SHELL, { 'detach': 1 })
+  let s:vimterm_buf = bufnr('%')
+  let s:vimterm_window = win_getid()
+endfunction
+
 function! vimterm#open()
   if s:vimterm_job_id == -1
-    new vimterm | wincmd J
-    exec 'resize ' . g:vimterm_height
-
-    let s:vimterm_job_id = termopen($SHELL, { 'detach': 1 })
-    let s:vimterm_buf = bufnr('%')
-    let s:vimterm_window = win_getid()
-
-    set nobuflisted
+    " if not initialized then init
+    call vimterm#init()
   else
+    " if there is no buffer then reset all variables
+    if !bufexists(s:vimterm_buf)
+      call vimterm#kill()
+      call vimterm#open()
+      return
+    endif
+
     if !win_gotoid(s:vimterm_window)
       sp | wincmd J
       exec 'resize ' . g:vimterm_height
@@ -36,11 +51,12 @@ function! vimterm#close()
 endfunction
 
 function! vimterm#kill()
+  let s:vimterm_window = -1
+  let s:vimterm_buf = -1
+  let s:vimterm_job_id = -1
+
   if win_gotoid(s:vimterm_window)
     quit
-    let s:vimterm_window = -1
-    let s:vimterm_buf = -1
-    let s:vimterm_job_id = -1
   endif
 endfunction
 
@@ -52,9 +68,22 @@ function! vimterm#toggle()
   endif
 endfunction
 
-function! vimterm#exec(cmd)
+function! vimterm#run(cmd)
   if !win_gotoid(s:vimterm_window)
     call vimterm#open()
+  endif
+
+  call vimterm#exec(a:cmd)
+
+  " scroll down
+  normal G
+  startinsert
+endfunction
+
+function! vimterm#exec(cmd)
+  if s:vimterm_job_id == -1
+    call vimterm#open()
+    call vimterm#close()
   endif
 
   " clear current input
@@ -62,8 +91,4 @@ function! vimterm#exec(cmd)
 
   " run cmd
   call jobsend(s:vimterm_job_id, a:cmd . "\n")
-
-  " scroll down
-  normal G
-  startinsert
 endfunction

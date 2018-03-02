@@ -29,16 +29,27 @@ without leaving your best editor.
 Usage                                                          *vimterm-usage*
 
 vimterm#open()                                                  *vimterm#open*
-  Create new terminal instance at the bottom of current workspace.
+  Create new terminal instance at the bottom of current workspace or open
+  existing one.
 
-vimterm#close()                                                *vimterm#close*
-  Close terminal.
+vimterm#close()                                              *vimterm#close()*
+  Hide terminal.
 
-vimterm#toggle()                                              *vimterm#toggle*
-  Open terminal or close existing one.
+vimterm#kill()                                                *vimterm#kill()*
+  Destroy terminal instance and terminal window.
 
-vimterm#exec({cmd})                                             *vimterm#exec*
-  Execute a command in existing terminal instance or a new one.
+vimterm#toggle()                                            *vimterm#toggle()*
+  Call |vimterm#open()| if terminal is closed or |vimterm#close()| if else.
+
+vimterm#run({cmd})                                             *vimterm#run()*
+  Call |vimterm#open()| and |vimterm#exec()| then go to insert mode inside
+  terminal.
+
+vimterm#exec({cmd}                                            *vimterm#exec()*
+  Execute a command in existing terminal instance.
+
+  If the |vimterm#open()| was not called it acts just like |vimterm#run()|
+  to create new terminal instance.
 
 ==============================================================================
 Requirements                                            *vimterm-requirements*
